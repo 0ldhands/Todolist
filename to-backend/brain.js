@@ -5,6 +5,7 @@ const dotenv=require('dotenv');
 const bodyParser = require('body-parser');
 const PORT=process.env.PORT || 8080
 const DB=require('./DB')
+const router=require('./routes/routes.todo')
 
 // middlewares
 dotenv.config()
@@ -16,6 +17,8 @@ DB.getConnection((err)=>{
         console.log("DB connected successfully")
     }
 })
+
+app.use('/Home',router)
 
 app.listen(PORT,()=>{
     console.log(`server started on http://localhost:${PORT}` )
